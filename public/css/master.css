@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav{
+    width: 100%;
+    background-color: black;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    min-height: 3.5rem;
+    background: black;
+    display: grid;
+    place-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    transition: transform ease-in-out 400ms,
+                background-color ease-in-out 200ms;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 7rem;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+li:hover > a{
+    transform: scale(1.1);
+    background-color: #333;
+}
+
+
+.container{
+    width: 90%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+main h1{
+    text-align: center;
+    font-size: 2.5rem;
+}
+main .error{
+    color: red;
+    font-weight: 700;
+}
+
+main form{
+    min-height: 30rem;
+    max-width: 40rem;
+}
+
+form.signin{
+    display: grid;
+    grid-template-areas: 
+        "email"
+        "password"
+        "reset"
+        "submit";
+    grid-template-rows: 3fr 3fr 1fr 1fr;
+}
+
+#email-control{
+    grid-area: email;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#password-control{
+    grid-area: password;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container{
+    position: relative;
+}
+
+.input-container label{
+    position: absolute;
+    left: -8rem;
+    top: 0.2rem;
+    font-size: 1.4rem;
+    pointer-events: none;
+}
+
+.input-container input{
+    width: 16rem;
+    min-height: 1.5rem;
+    font-size: 1.3rem;
+    padding-left: 0.6rem;
+}
+
+.input-container button{
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    cursor: pointer;
+}
+#reset{
+    grid-area: reset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#reset a{
+    color: cornflowerblue;
+    font-size: 20px;
+}
+
+#reset a:hover{
+    text-decoration: underline;
+}
+
+
+#submit-control{
+    grid-area: submit;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#submit-control.left{
+    justify-content: left;
+}
+
+#submit-control input{
+    min-height: 3rem;
+    min-width: 6rem;
+    font-size: 23px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+.footer-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: black;
+    text-align: center;
+}

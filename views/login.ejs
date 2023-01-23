@@ -1,0 +1,26 @@
+<main>
+    <h1>Login</h1><p class="error"></p>
+    <form action="/signin" method="post" class="signin">
+        <div id="email-control">
+            <div class="input-container">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="emai" required>
+            </div>
+        </div>
+        <div id="password-control">
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <button type="button" id='eye' class="icon-eye"></button>
+            </div>
+        </div>
+        <div id="reset">
+            <a href="/signin/forgot-password">
+                Forgot password? Don't worry and click me
+            </a>
+        </div>
+        <div id="submit-control">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</main>
