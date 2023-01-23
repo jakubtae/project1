@@ -1,24 +1,32 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 const router = express.Router();
+
+const User = require('../models/mongoUser');
 
 router.get('/', (req, res) => {
     res.render('signup');
 })
 
+
 router.post('/', async (req, res) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        res.send(hashedPassword);
-        res.status(201).send();
+        signup()
+        async function signup(){
+            const user = new User({name: req.body.name, email: req.body.email, password: hashedPassword});
+            await user.save();
+            console.log(user);
+            res.render('message', {message : 'You have successfully signed up!'});
+        }    
+
         //pushing email and hashed password to mongodb?
-        // const user = new User({
-        //     email: req.body.email,
-        //     password: hashedPassword
-        // });
-        // await user.save();
+
         // if successful, redirect to home page and pass variable message: "Logged in"
     }catch{
         res.status(500).send();
+        res.render('message', {message : 'Ups something went wrong!'});
     }
 }) 
 module.exports = router;
