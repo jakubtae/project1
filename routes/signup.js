@@ -17,12 +17,8 @@ router.post('/', async (req, res) => {
         async function signup(){
             const user = new User({name: req.body.name, email: req.body.email, password: hashedPassword});
             await user.save();
-            console.log(user);
-            res.render('message', {message : 'You have successfully signed up!'});
+            res.render('message', {message: 'You have successfully signed up!'});
         }    
-
-        //pushing email and hashed password to mongodb?
-
         // if successful, redirect to home page and pass variable message: "Logged in"
     }catch{
         res.status(500).send();
