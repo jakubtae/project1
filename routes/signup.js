@@ -6,7 +6,7 @@ const router = express.Router();
 const User = require('../models/mongoUser');
 
 router.get('/', (req, res) => {
-    res.render('signup');
+    res.render('signup',{message: ' '});
 })
 
 
@@ -17,12 +17,12 @@ router.post('/', async (req, res) => {
         async function signup(){
             const user = new User({name: req.body.name, email: req.body.email, password: hashedPassword});
             await user.save();
-            res.render('message', {message: 'You have successfully signed up!'});
+            res.render('signup', {message : 'You have succesfully logged in!'})
         }    
         // if successful, redirect to home page and pass variable message: "Logged in"
     }catch{
         res.status(500).send();
-        res.render('message', {message : 'Ups something went wrong!'});
+        res.render('signup',{message : 'Ups something went wrong!'});
     }
 }) 
 module.exports = router;
