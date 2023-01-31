@@ -17,16 +17,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
-
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-})
+const db = require('./models/conn.js');
 
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter); // the main route being CONTROLED BY indexRouter
@@ -37,6 +28,8 @@ app.use('/login', loginRouter); // the login route being CONTROLED BY loginRoute
 const signupRouter = require('./routes/signup');
 app.use('/signup', signupRouter); // the main route being CONTROLED BY indexRouter
 
+const infoRouter = require('./routes/info');
+app.use('/info', infoRouter); // the main route being CONTROLED BY index
 
 
 app.listen(process.env.PORT || 3000)
