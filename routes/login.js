@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 const db = require('../models/conn.js');
 
+const User = require('../models/mongoUser');
 
 app.use(express.json());
 
@@ -13,20 +14,32 @@ router.get('/', (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    //searching through mongodb if such email exists
     try{
         login()
         async function login(){
-                const check = await User.findOne({email: req.body.email});
+            //searching through mongodb if such email exists
+                const check = await User.findOne({email: req.body.email}); //check is already getting all the user data so we can operate on it
                 if (check != null){
-                        //if yes checkes password
-                        //compares the password with the one in the database using bcrypt
-                         //if password is incorrect sends error
-                         //if password is correct sends user to home page
-                    
+                    //compares the password with the one in the database using bcrypt
+                    bcrypt.compare(req.body.password, check.password, (err, result) => {
+                        if (result == true){
+                             //if password is correct sends user to home page
+                            console.log("password is correct")
+                            // start JWT token
+                            //  *************
+                            //  *************
+                            //  *************
+                            //  *************
+                            //  *************
+                        }else{
+                            //if password is incorrect sends error
+                            console.log("password is incorrect")
+                        }
+                    })  
                 }
                 else{
-                    //if no sends error
+                    //if user does not exist sends error
+                    console.log("user does not exist)")
                 }
         }
     }catch{
